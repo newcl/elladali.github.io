@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://elladali.github.io/sitemap-index.xml
