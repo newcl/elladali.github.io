@@ -106,7 +106,8 @@ function toggleTheme(dark) {
   document.addEventListener("DOMContentLoaded", () => init());
   document.addEventListener("astro:after-swap", () => init());
   preloadTheme();
-</script><link rel="stylesheet" href="/_astro/_slug_.DimS2bGL.css"><script type="module" src="/_astro/hoisted.RlhmG3H2.js"></script></head> <body> <header> <div class="mx-auto max-w-screen-sm px-5">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Astro Nano </div>  </a> <nav class="flex gap-1"> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+</script><link rel="stylesheet" href="/_astro/_slug_.D2jq8zBV.css">
+<link rel="stylesheet" href="/_astro/_slug_.DimS2bGL.css"><script type="module" src="/_astro/hoisted.RlhmG3H2.js"></script></head> <body> <header> <div class="mx-auto max-w-screen-sm px-5">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Astro Nano </div>  </a> <nav class="flex gap-1"> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
 blog
  </a> <span> / </span> <a href="/work" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
 work
@@ -130,12 +131,12 @@ Back to blog
 <li><code>https://example.com/blog/post-2</code></li>
 </ul>
 <p>All content must be preceded by required metadata in the markdown file in <code>yaml</code> format, and be enclosed by triple dashes. --- ---</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mdx"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
-<span class="line"><span style="color:#E1E4E8">title: "My cool new title"</span></span>
-<span class="line"><span style="color:#E1E4E8">description: "A description of my content."</span></span>
-<span class="line"><span style="color:#E1E4E8">date: "Mar 22 2024"</span></span>
-<span class="line"><span style="color:#E1E4E8">draft: false</span></span>
-<span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mdx"><code><span class="line"><span style="color:#9ECBFF">---</span></span>
+<span class="line"><span style="color:#85E89D">title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"My cool new title"</span></span>
+<span class="line"><span style="color:#85E89D">description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"A description of my content."</span></span>
+<span class="line"><span style="color:#85E89D">date</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Mar 22 2024"</span></span>
+<span class="line"><span style="color:#85E89D">draft</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"><span style="color:#9ECBFF">---</span></span>
 <span class="line"></span></code></pre>
 <p>Metadata fields</p>
 
@@ -175,12 +176,12 @@ Back to blog
 
 <table><thead><tr><th align="left">Field</th><th align="left">Req</th><th align="left">Type</th><th align="left">Remarks</th></tr></thead><tbody><tr><td align="left">title</td><td align="left">Yes</td><td align="left">string</td><td align="left">Title of the content. Used in SEO and RSS.</td></tr><tr><td align="left">description</td><td align="left">Yes</td><td align="left">string</td><td align="left">Description of the content. Used in SEO and RSS.</td></tr><tr><td align="left">date</td><td align="left">Yes</td><td align="left">string</td><td align="left">Must be a valid date string (able to be parsed).</td></tr><tr><td align="left">draft</td><td align="left">No*</td><td align="left">boolean</td><td align="left">draft: true, content will not be published.</td></tr></tbody></table>
 <p>All that’s left to do is write your content under the metadata.</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mdx"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
-<span class="line"><span style="color:#E1E4E8">title: "My cool new title"</span></span>
-<span class="line"><span style="color:#E1E4E8">description: "A description of my content."</span></span>
-<span class="line"><span style="color:#E1E4E8">date: "Mar 22 2024"</span></span>
-<span class="line"><span style="color:#E1E4E8">draft: false</span></span>
-<span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mdx"><code><span class="line"><span style="color:#9ECBFF">---</span></span>
+<span class="line"><span style="color:#85E89D">title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"My cool new title"</span></span>
+<span class="line"><span style="color:#85E89D">description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"A description of my content."</span></span>
+<span class="line"><span style="color:#85E89D">date</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Mar 22 2024"</span></span>
+<span class="line"><span style="color:#85E89D">draft</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"><span style="color:#9ECBFF">---</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#79B8FF;font-weight:bold">### Woot</span></span>
 <span class="line"></span>

@@ -1,0 +1,77 @@
+<!DOCTYPE html><link rel="stylesheet" href="/_astro/_slug_.D2jq8zBV.css"><hr>
+<p>If you’re running Argo CD (or anything else) in a homelab and want to expose it securely over the internet without touching TLS certs or opening ports, this post is for you. I’ll walk you through how I exposed Argo CD using Cloudflare Tunnel, Traefik, and K3s—<strong>without managing HTTPS myself</strong>.</p>
+<hr>
+<h2 id="goal">Goal</h2>
+<ul>
+<li>Argo CD should be accessible at <code>https://argo.elladali.com</code></li>
+<li>TLS should be fully handled without me dealing with certs</li>
+<li>Everything inside the cluster stays on plain HTTP</li>
+<li>No need to open any ports to the public</li>
+</ul>
+<p>Turns out this is pretty easy with <strong>Cloudflare Tunnel</strong> and <strong>Traefik’s iptables redirection</strong> in K3s.</p>
+<hr>
+<h2 id="setup-overview">Setup Overview</h2>
+<ul>
+<li>K3s installed with default Traefik ingress</li>
+<li>Argo CD running with <code>--insecure</code> (i.e., on plain HTTP)</li>
+<li><code>cloudflared</code> tunnel runs <strong>on the host</strong>, outside K3s</li>
+<li>DNS managed by Cloudflare, domain is <code>argo.elladali.com</code></li>
+</ul>
+<p>And here’s the <code>cloudflared</code> config I use:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#6A737D"># /etc/cloudflared/config.yml</span></span>
+<span class="line"><span style="color:#85E89D">tunnel</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">myk3s-tunnel</span></span>
+<span class="line"><span style="color:#85E89D">credentials-file</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">/etc/cloudflared/&#x3C;your-uuid>.json</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">ingress</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">hostname</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">argo.elladali.com</span></span>
+<span class="line"><span style="color:#85E89D">    service</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">http://localhost:80</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">hostname</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">drone.elladali.com</span></span>
+<span class="line"><span style="color:#85E89D">    service</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">http://localhost:80</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">service</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">http_status:404</span></span>
+<span class="line"></span></code></pre>
+<p>Note the key bit: I’m forwarding traffic to <code>http://localhost:80</code>. You’d expect that to go nowhere, but since <strong>K3s modifies iptables</strong>, this is actually routed into Traefik inside the cluster.</p>
+<hr>
+<h2 id="request-flow-explained">Request Flow Explained</h2>
+<p>Here’s what happens when I open Argo CD in a browser:</p>
+<h3 id="1-browser--cloudflare">1. Browser → Cloudflare</h3>
+<p>I visit <code>https://argo.elladali.com</code>. Cloudflare serves as the edge, and since it’s in <strong>SSL Full mode</strong>, it expects HTTPS from both the browser and origin.</p>
+<h3 id="2-cloudflare--cloudflared">2. Cloudflare → <code>cloudflared</code></h3>
+<p>Cloudflare forwards the request <strong>over HTTPS</strong> to the <code>cloudflared</code> tunnel client running on my homelab machine. The tunnel connection is TLS-encrypted.</p>
+<h3 id="3-cloudflared--localhost80">3. <code>cloudflared</code> → localhost:80</h3>
+<p>Here’s the magic: <code>cloudflared</code> decrypts the HTTPS and forwards the raw HTTP request to <code>http://localhost:80</code>. That’s where K3s’s iptables kicks in…</p>
+<h3 id="4-iptables--traefik">4. iptables → Traefik</h3>
+<p>K3s modifies iptables so that traffic hitting <code>localhost:80</code> is redirected to the in-cluster Traefik ingress controller.</p>
+<h3 id="5-traefik--argo-cd">5. Traefik → Argo CD</h3>
+<p>Traefik sees the incoming HTTP request, matches it against the Ingress for <code>argo.elladali.com</code>, and forwards it to the <code>argocd-server</code> Kubernetes service. Argo CD is running with <code>--insecure</code>, so it’s perfectly happy with HTTP.</p>
+<p>Everything works.</p>
+<hr>
+<h2 id="tls-termination-point">TLS Termination Point</h2>
+<p>Here’s the full picture:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>[BROWSER]</span></span>
+<span class="line"><span>   ↓ HTTPS</span></span>
+<span class="line"><span>[CLOUDFLARE EDGE]</span></span>
+<span class="line"><span>   ↓ HTTPS</span></span>
+<span class="line"><span>[CLOUDFLARED]</span></span>
+<span class="line"><span>   ↓ HTTP</span></span>
+<span class="line"><span>[IPTABLES REDIRECT]</span></span>
+<span class="line"><span>   ↓ HTTP</span></span>
+<span class="line"><span>[TRAEFIK IN K3S]</span></span>
+<span class="line"><span>   ↓ HTTP</span></span>
+<span class="line"><span>[ARGO CD SERVICE]</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>TLS is terminated at <strong>Cloudflare</strong>. From there on, it’s all HTTP, which is fine because it stays inside my trusted LAN/K3s environment.</p>
+<p>Even Argo CD’s login and GitHub OAuth work without issue, because from the browser’s perspective, everything is happening over HTTPS.</p>
+<hr>
+<h2 id="why-this-works-so-well">Why This Works So Well</h2>
+<ul>
+<li>No need for cert-manager or messing with TLS</li>
+<li>Secure access over the internet via Cloudflare</li>
+<li>Internal traffic stays simple (plain HTTP)</li>
+<li>Works with any number of apps (<code>drone.elladali.com</code>, etc.)</li>
+</ul>
+<p>I didn’t expect this setup to be so smooth, but it turned out rock solid.</p>
+<p>If you’re running a homelab and want to expose services like Argo CD, Drone, or Gitea without opening ports or worrying about HTTPS, this approach is hard to beat.</p>
+<hr>
+<h2 id="next-steps">Next Steps</h2>
+<p>I’ll probably containerize <code>cloudflared</code> and run it in-cluster next, just to clean things up. But as-is, this setup is production-grade for personal projects.</p>
+<p>Let me know if you’re doing something similar or want help setting it up.</p>

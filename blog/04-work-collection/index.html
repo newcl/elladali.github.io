@@ -106,7 +106,8 @@ function toggleTheme(dark) {
   document.addEventListener("DOMContentLoaded", () => init());
   document.addEventListener("astro:after-swap", () => init());
   preloadTheme();
-</script><link rel="stylesheet" href="/_astro/_slug_.DimS2bGL.css"><script type="module" src="/_astro/hoisted.RlhmG3H2.js"></script></head> <body> <header> <div class="mx-auto max-w-screen-sm px-5">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Astro Nano </div>  </a> <nav class="flex gap-1"> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+</script><link rel="stylesheet" href="/_astro/_slug_.D2jq8zBV.css">
+<link rel="stylesheet" href="/_astro/_slug_.DimS2bGL.css"><script type="module" src="/_astro/hoisted.RlhmG3H2.js"></script></head> <body> <header> <div class="mx-auto max-w-screen-sm px-5">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Astro Nano </div>  </a> <nav class="flex gap-1"> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
 blog
  </a> <span> / </span> <a href="/work" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
 work
@@ -127,12 +128,12 @@ Back to blog
 <p>In the above example, four entries on the /work page will be generated.</p>
 <p><code>apple</code>, <code>facebook</code>, <code>google</code>, <code>mcdonalds</code></p>
 <p>All content must be preceded by required metadata in the markdown file in <code>yaml</code> format, and be enclosed by triple dashes. --- ---</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mdx"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
-<span class="line"><span style="color:#E1E4E8">company: "McDonalds"</span></span>
-<span class="line"><span style="color:#E1E4E8">role: "French Fryer"</span></span>
-<span class="line"><span style="color:#E1E4E8">dateStart: "01/01/2020"</span></span>
-<span class="line"><span style="color:#E1E4E8">dateEnd: "11/27/2022"</span></span>
-<span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mdx"><code><span class="line"><span style="color:#9ECBFF">---</span></span>
+<span class="line"><span style="color:#85E89D">company</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"McDonalds"</span></span>
+<span class="line"><span style="color:#85E89D">role</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"French Fryer"</span></span>
+<span class="line"><span style="color:#85E89D">dateStart</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"01/01/2020"</span></span>
+<span class="line"><span style="color:#85E89D">dateEnd</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"11/27/2022"</span></span>
+<span class="line"><span style="color:#9ECBFF">---</span></span>
 <span class="line"></span></code></pre>
 <p>Metadata fields</p>
 
@@ -174,12 +175,12 @@ Back to blog
 <p>* <em>Note: If you are still employed at company, for dateEnd you can enter Current,
 Now or Present instead of a date.</em></p>
 <p>All that’s left to do is write your content under the metadata.</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mdx"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
-<span class="line"><span style="color:#E1E4E8">title: "My awesome project"</span></span>
-<span class="line"><span style="color:#E1E4E8">description: "A description of my project."</span></span>
-<span class="line"><span style="color:#E1E4E8">date: "Mar 22 2024"</span></span>
-<span class="line"><span style="color:#E1E4E8">draft: false</span></span>
-<span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mdx"><code><span class="line"><span style="color:#9ECBFF">---</span></span>
+<span class="line"><span style="color:#85E89D">title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"My awesome project"</span></span>
+<span class="line"><span style="color:#85E89D">description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"A description of my project."</span></span>
+<span class="line"><span style="color:#85E89D">date</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Mar 22 2024"</span></span>
+<span class="line"><span style="color:#85E89D">draft</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"><span style="color:#9ECBFF">---</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#79B8FF;font-weight:bold">### Woot</span></span>
 <span class="line"></span>
