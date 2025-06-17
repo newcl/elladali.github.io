@@ -1,17 +1,15 @@
 ---
-import PostLayout from "../../layouts/PostLayout.astro";
-
-const post = {
-  title: "How I Securely Exposed Argo CD Without Managing TLS",
-  description: "Using Cloudflare Tunnel and Traefik to expose Argo CD with HTTPS, while running everything inside my K3s homelab on plain HTTP.",
-  pubDate: new Date("2025-06-17"),
-  updatedDate: new Date("2025-06-17"),
-  author: "Liang Chen",
-  tags: ["k3s", "cloudflare", "argocd", "traefik"],
-};
+title: "How I Securely Exposed Argo CD Without Managing TLS"
+description: "Using Cloudflare Tunnel and Traefik to expose Argo CD with HTTPS, while running everything inside my K3s homelab on plain HTTP."
+date: "2025-06-17"
+draft: false
+author: "Liang Chen"
+tags:
+  - k3s
+  - cloudflare
+  - argocd
+  - traefik
 ---
-
-<PostLayout {...post}>
 
 ## Goal
 
@@ -44,30 +42,34 @@ ingress:
   - hostname: drone.elladali.com
     service: http://localhost:80
   - service: http_status:404
-Note the key bit: I'm forwarding traffic to http://localhost:80. Since K3s modifies iptables, this is actually routed into Traefik inside the cluster.
+```
 
-Request Flow Explained
+---
+
+## Request Flow Explained
+
 Here’s what happens when I open Argo CD in a browser:
 
-1. Browser → Cloudflare
+1. Browser → Cloudflare  
 Browser visits https://argo.elladali.com. Cloudflare serves as the edge and handles TLS in SSL Full mode.
 
-2. Cloudflare → cloudflared
+2. Cloudflare → cloudflared  
 The request is tunneled over HTTPS to cloudflared on my homelab machine.
 
-3. cloudflared → localhost:80
+3. cloudflared → localhost:80  
 Cloudflared decrypts HTTPS and forwards it to plain HTTP localhost:80.
 
-4. iptables → Traefik
+4. iptables → Traefik  
 K3s modifies iptables so that traffic hitting localhost:80 is routed to Traefik.
 
-5. Traefik → Argo CD
+5. Traefik → Argo CD  
 Traefik forwards the HTTP request to Argo CD, which is running with --insecure.
 
-TLS Termination Point
-text
-Copy
-Edit
+---
+
+## TLS Termination Point
+
+```
 [BROWSER]
    ↓ HTTPS
 [CLOUDFLARE EDGE]
@@ -79,19 +81,21 @@ Edit
 [TRAEFIK IN K3S]
    ↓ HTTP
 [ARGO CD SERVICE]
+```
+
 TLS ends at Cloudflare. Everything inside stays HTTP, safely in your LAN.
 
-Why This Works So Well
-No cert-manager or TLS headaches
+---
 
-Secure external access via Cloudflare
+## Why This Works So Well
 
-Simple internal HTTP stack
+- No cert-manager or TLS headaches  
+- Secure external access via Cloudflare  
+- Simple internal HTTP stack  
+- Extendable to other apps (e.g., Drone, Gitea)
 
-Extendable to other apps (e.g., Drone, Gitea)
+---
 
-Next Steps
+## Next Steps
+
 I’ll containerize cloudflared next and run it inside K3s, just for tidiness. But this setup already works great.
-
-</PostLayout> ```
-Just copy this entire block into src/pages/blog/argo-cd-cloudflare.astro and you’re good to go!
