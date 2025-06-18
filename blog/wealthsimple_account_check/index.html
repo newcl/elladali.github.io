@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)"><link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)"><link rel="icon" type="image/x-icon" href="/favicon-light.svg"><meta name="generator" content="Astro v4.16.18"><!-- Font preloads --><link rel="preload" href="/_astro/inter-latin-400-normal.C38fXH4l.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/inter-latin-600-normal.LgqL8muc.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-400-normal.BEO3GLPG.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-600-normal.C9KcfMzc.woff2" as="font" type="font/woff2" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://elladali.github.io/blog/wealthsimple_account_check/"><!-- Primary Meta Tags --><title>How to Tell If You&#39;re Paying Management Fees in Wealthsimple | Doing My Thing</title><meta name="title" content="How to Tell If You're Paying Management Fees in Wealthsimple | Doing My Thing"><meta name="description" content="Quick tips to figure out if your TFSA, RRSP, or non-registered accounts in Wealthsimple are managed (with fees) or self-directed (fee-free)."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://elladali.github.io/blog/wealthsimple_account_check/"><meta property="og:title" content="How to Tell If You're Paying Management Fees in Wealthsimple | Doing My Thing"><meta property="og:description" content="Quick tips to figure out if your TFSA, RRSP, or non-registered accounts in Wealthsimple are managed (with fees) or self-directed (fee-free)."><meta property="og:image" content="https://elladali.github.io/nano.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://elladali.github.io/blog/wealthsimple_account_check/"><meta property="twitter:title" content="How to Tell If You're Paying Management Fees in Wealthsimple | Doing My Thing"><meta property="twitter:description" content="Quick tips to figure out if your TFSA, RRSP, or non-registered accounts in Wealthsimple are managed (with fees) or self-directed (fee-free)."><meta property="twitter:image" content="https://elladali.github.io/nano.png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const lightThemeButton = document.getElementById("light-theme-button");
+    lightThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "light");
+      toggleTheme(false);
+    });
+
+    const darkThemeButton = document.getElementById("dark-theme-button");
+    darkThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "dark");
+      toggleTheme(true);
+    });
+
+    const systemThemeButton = document.getElementById("system-theme-button");
+    systemThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "system");
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", event => {
+        if (localStorage.theme === "system") {
+          toggleTheme(event.matches);
+        }
+      }
+    );
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 150);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `,
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+  window.getComputedStyle(css).opacity;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/_astro/_slug_.Dc45IIhn.css"><script type="module" src="/_astro/hoisted.RlhmG3H2.js"></script></head> <body> <header> <div class="mx-auto max-w-screen-sm px-5">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Doing My Thing </div>  </a> <nav class="flex gap-1"> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+blog
+ </a> <span> / </span> <a href="/work" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+work
+ </a> <span> / </span> <a href="/projects" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+projects
+ </a> </nav> </div>  </div> </header> <main>  <div class="mx-auto max-w-screen-sm px-5">  <div class="animate"> <a href="/blog" class="relative group w-fit flex pl-7 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm"> 
+Back to blog
+ </div> </a> </div> <div class="space-y-1 my-10"> <div class="animate flex items-center gap-1.5"> <div class="font-base text-sm"> <time datetime="2025-06-18T00:00:00.000Z"> Jun 18, 2025 </time> </div>
+&bull;
+<div class="font-base text-sm"> 3 min read </div> </div> <div class="animate text-2xl font-semibold text-black dark:text-white"> How to Tell If You&#39;re Paying Management Fees in Wealthsimple </div> </div> <article class="animate"> <h1 id="️️-how-to-tell-if-youre-paying-management-fees-in-wealthsimple">🕵️‍♂️ How to Tell If You’re Paying Management Fees in Wealthsimple</h1>
+<p>Wealthsimple makes it pretty easy to invest — sometimes too easy to forget you might be paying <strong>management fees</strong> without realizing it. If you’re like me and have a TFSA, RRSP, non-registered account, and a chequing account all with Wealthsimple, here’s how to quickly figure out if you’re being charged a <strong>0.4% management fee</strong> on your investments.</p>
+<hr>
+<h2 id="-step-1-check-your-homepage-for-labels">✅ Step 1: Check Your Homepage for Labels</h2>
+<p>When you log into your Wealthsimple app or website, head to your <strong>Accounts</strong> list:</p>
+<ul>
+<li>If you see a label like <code>Managed</code> next to your account (e.g., TFSA or RRSP), that means it’s a <strong>Wealthsimple Invest</strong> account — <strong>they manage it, and you’re paying a fee</strong>.</li>
+<li>If there’s no label and you see stock tickers like <code>VEQT</code>, <code>TSLA</code>, or <code>XAW</code>, that’s likely a <strong>self-directed</strong> account — no management fee here!</li>
+</ul>
+<hr>
+<h2 id="-step-2-check-account-numbers-in-settings">🔍 Step 2: Check Account Numbers in Settings</h2>
+<p>Go to <strong>Settings → Accounts</strong>, and look at the <strong>account numbers</strong>. The prefixes tell you what type they are:</p>
+<ul>
+<li>📗 <strong>Numbers starting with <code>H</code></strong> → Self-directed (Wealthsimple Trade)</li>
+<li>📘 <strong>Numbers starting with <code>W</code></strong> → Managed or registered savings accounts (Wealthsimple Invest)</li>
+<li>📙 <strong>Numbers starting with <code>WZ</code></strong> → Self-directed registered accounts (TFSA/RRSP via Wealthsimple Trade)</li>
+</ul>
+<blockquote>
+<p><strong>Example:</strong></p>
+<ul>
+<li><code>W-1234567</code> → Managed TFSA, you’re likely paying 0.4% annually.</li>
+<li><code>H-2345678</code> → Self-directed TFSA, no management fee.</li>
+<li><code>WZ-9876543</code> → Self-directed TFSA inside Trade app, also no fee.</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="-bonus-tip-check-your-statements">💡 Bonus Tip: Check Your Statements</h2>
+<p>You can also confirm by looking at your monthly statements:</p>
+<ul>
+<li>Go to <strong>Settings → Documents → Statements</strong></li>
+<li>Look for terms like <code>Advisory Fee</code> or <code>Management Fee</code></li>
+</ul>
+<p>If you see these, it’s managed. If not, you’re all good!</p>
+<hr>
+<h2 id="-wrapping-up">🏁 Wrapping Up</h2>
+<p>If you didn’t know about these fees — you’re not alone. I didn’t either. Wealthsimple’s “set it and forget it” vibe is great, but it’s worth knowing what you’re paying for.</p>
+<p>If you’re comfortable managing your own ETFs (like <code>VEQT</code>, <code>XEQT</code>, or <code>VFV</code>), switching to a self-directed Wealthsimple Trade account could save you hundreds a year.</p>
+<p>Need help switching? Hit me up — happy to share what I did. 🙌</p> </article>  </div>  </main> <footer class="animate"> <div class="mx-auto max-w-screen-sm px-5">  <div class="relative"> <div class="absolute right-0 -top-20"> <button id="back-to-top" class="relative group w-fit flex pl-8 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current rotate-90"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm">
+Back to top
+</div> </button> </div> </div> <div class="flex justify-between items-center"> <div>
+&copy; 2024 | Doing My Thing </div> <div class="flex flex-wrap gap-1 items-center"> <button id="light-theme-button" aria-label="Light theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> </button> <button id="dark-theme-button" aria-label="Dark theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <button id="system-theme-button" aria-label="System theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect> <line x1="8" y1="21" x2="16" y2="21"></line> <line x1="12" y1="17" x2="12" y2="21"></line> </svg> </button> </div> </div>  </div> </footer> </body></html>
