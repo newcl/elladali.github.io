@@ -4,7 +4,7 @@ description: "How I debugged a 404 error when exposing Argo CD with Traefik Ingr
 date: "2025-06-17"
 author: Liang Chen
 tags: [k3s, argocd, traefik, ingress, homelab]
-layout: ../../layouts/PostLayout.astro
+
 ---
 
 When exposing [Argo CD](https://argo-cd.readthedocs.io/) in a homelab using Traefik as the Ingress controller and Cloudflare Tunnel for HTTPS, I encountered a persistent `404 Not Found` on the root path (`/`). Here's a breakdown of what caused it, how I verified my routing setup, and what fixed the problem.
